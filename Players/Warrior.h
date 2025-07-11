@@ -5,3 +5,4 @@ class Warrior{
         return "Warrior";
     }
 }
+
