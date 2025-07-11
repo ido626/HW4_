@@ -1,8 +1,9 @@
 //
 // Created by Ido Amit on 07/07/2025.
 //
-#pragma once
 #include "Player.h"
+#include "Job.h"
+#include "Character.h"
 
 using std::string;
 
@@ -21,6 +22,14 @@ int Player::getLevel() const{
 
 int Player::getForce() const{
     return force;
+}
+
+void Player::setForce(int newForce) {
+    force = newForce;
+}
+
+int Player::getMaxHp() const{
+    return maxHealth;
 }
 
 int Player::getHealthPoints() const{
