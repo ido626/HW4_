@@ -58,6 +58,18 @@ public:
     int getForce() const;
 
     /**
+     * Sets the force of the player
+    */
+    void setForce(int newForce);
+
+    /**
+     * Gets the amount of health points the player can has
+     *
+     * @return - health points of the player
+    */
+    int getMaxHp() const;
+
+    /**
      * Gets the amount of health points the player currently has
      *
      * @return - health points of the player

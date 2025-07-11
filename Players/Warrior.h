@@ -1,8 +1,14 @@
-class Warrior{
-        int CalculateCombatPower(const Player& player) override{
-        reutrn player.getForce()*2 +player.getLevel()
-        string toString()override{
+#pragma once
+#include "Job.h"
+
+class Warrior : public Job {
+public:
+    int CalculateCombatPower(const Player& player) override {
+        return player.getForce()*2 + player.getLevel();
+    }
+
+    std::string toString() const override {
         return "Warrior";
     }
-}
+};
 
