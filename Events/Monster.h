@@ -26,37 +26,32 @@ public:
     virtual int getLoot() const { return m_loot; }
     virtual int getDamage() const { return m_damage; }
     std::string getName() const { return m_name; }
+    virtual void onEncounterEnd();
 
     void apply(Player& p) override {
-        if (p.getCombatPower() - this->getCombatPower() <= 0) {
-            p.setCurrentHealth(p.getCurrentHealth() - this->getDamage()); 
+        if (p.getJob().CalculateCombatPower - this->getCombatPower() <= 0) {
+            p.setHealthPoints(p.getHealthPoints() - this->getDamage()); 
         } else { 
             p.setCoins(p.getCoins() + this->getLoot()); // if players has warrior job, takes damage too
     }
-
-    virtual void onEncounterEnd() = 0;
 
 
     std::string getDescription() const override {
         return getName() + " (power " + std::to_string(getCombatPower()) + ", loot " +
                std::to_string(getLoot()) + ", damage " + std::to_string(getDamage()) + ")";
     }
+}
 };
 
 class Snail : public Monster {
 public:
     Snail() : Monster("Snail", 5, 2, 10) {}
 
-    void onEncounterEnd() override {
-    }
 };
 
 class Slime : public Monster { 
 public:
     Slime() : Monster("Slime", 12, 5, 25) {}
-
-    void onEncounterEnd() override {
-    }
 };
 
 class Balrog : public Monster {
