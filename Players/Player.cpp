@@ -2,10 +2,11 @@
 // Created by Ido Amit on 07/07/2025.
 //
 #include "Player.h"
-#include "Job.h"
-#include "Character.h"
+
 
 using std::string;
+
+Player:: ~Player() = default;
 
 string Player::getDescription() const {
     return name + ", " + job->toString() + " with " + character->toString() + " character (level " +
@@ -30,6 +31,10 @@ void Player::setForce(int newForce) {
 
 int Player::getMaxHp() const{
     return maxHealth;
+}
+
+void Player::setMaxHealthPoints(int newMaxHp){
+    maxHealth = newMaxHp;
 }
 
 int Player::getHealthPoints() const{

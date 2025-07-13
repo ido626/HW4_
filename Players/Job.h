@@ -1,19 +1,34 @@
 #pragma once
-#include "Player.h"
+class Player;
+#include <string>
+
 
 class Job{
 public:
-    virtual int CalculateCombatPower(const Player& player){
-        return player.getForce() + player.getLevel();
-    }
-
-    virtual void SolarEclipse(Player& player){
-        if(player.getForce() > 0){
-            player.setForce(player.getForce()-1);
-        }
-    }
-
+    virtual int CalculateCombatPower(const Player& player);
+    virtual std::string SolarEclipse(Player& player);
     virtual std::string toString() const = 0;
+    virtual ~Job();
+};
 
-    virtual ~Job() = default;
+class Warrior : public Job {
+public:
+    ~Warrior() override;
+    int CalculateCombatPower(const Player& player) override;
+    std::string toString() const override;
+};
+
+class Magician : public Job{
+public:
+    ~Magician() override;
+    std::string SolarEclipse(Player& player) override;
+    std::string toString() const override;
+};
+
+class Archer : public Job{
+public:
+    ~Archer() override = default;
+    std::string toString() const override {
+        return "Archer";
+    }
 };

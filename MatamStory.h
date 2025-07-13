@@ -1,15 +1,20 @@
 
 #pragma once
 
-#include <iostream>
+#include "Players/PlayerFactory.h"
+#include "Events/EventFactory.h"
 
-#include "Players/Player.h"
-#include "Events/Event.h"
 
 
 class MatamStory{
 private:
     unsigned int m_turnIndex;
+    EventFactory eventFactory;
+    PlayerFactory playerFactory;
+    std::vector<std::unique_ptr<Event>> eventList;
+    std::vector<std::unique_ptr<Player>> playerList;
+
+    std::vector<Player*> createLeaderBoard(const std::vector<std::unique_ptr<Player>>& players);
 
     /**
      * Playes a single turn for a player
@@ -35,6 +40,8 @@ private:
     bool isGameOver() const;
 
 public:
+
+
     /**
      * Constructor of MatamStory class
      *

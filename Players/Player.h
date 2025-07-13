@@ -2,13 +2,12 @@
 #pragma once
 
 #include <memory>
-#include <string>
+
+#include "Job.h"
+#include "Character.h"
 
 using std::string;
 using std::unique_ptr;
-
-class Job;
-class Character;
 
 class Player {
 private:
@@ -22,6 +21,7 @@ private:
     unique_ptr<Character> character;
 
 public:
+    ~Player();
     Player(string name, unique_ptr<Job> job, unique_ptr<Character> character, int hp = 100, int maxHp = 100, int c = 10):
         name(std::move(name)), level(1), force(5), job(std::move(job)), character(std::move(character)) {
         currentHealth = hp;
@@ -67,13 +67,20 @@ public:
      *
      * @return - health points of the player
     */
+
     int getMaxHp() const;
+
+    /**
+        * Sets the amount of health points the player currently has
+       */
+    void setMaxHealthPoints(int newMaxHp);
 
     /**
      * Gets the amount of health points the player currently has
      *
      * @return - health points of the player
     */
+
     int getHealthPoints() const;
 
     /**

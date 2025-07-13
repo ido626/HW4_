@@ -1,7 +1,10 @@
 
 #pragma once
 
-#include "../Players/Player.h"
+class Job;
+class Character;
+class Player;
+#include <string>
 
 class Event {
 public:
@@ -10,29 +13,19 @@ public:
      *
      * @return - the description of the event
     */
-    virtual string getDescription() const = 0;
+    virtual std::string getDescription() const = 0;
 
-    virtual void apply(Player& player) = 0;
+    virtual std::string apply(Player& player) = 0;
 
     virtual ~Event() = default;
 };
 
 class SolarEclipse : public Event {
-    string getDescription() const override{
-        return "SolarEclipse";
-    }
-
-    void apply(Player& player) override{
-        player.getJob().SolarEclipse(player);
-    }
+    std::string getDescription() const override;
+    std::string apply(Player& player) override;
 };
 
 class PotionsMerchant : public Event {
-    string getDescription() const override{
-        return "PotionsMerchant";
-    }
-
-    void apply(Player& player) override{
-        player.getCharacter().PotionsMerchant(player);
-    }
+    std::string getDescription() const override;
+    std::string apply(Player& player) override;
 };
