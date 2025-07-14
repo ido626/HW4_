@@ -12,8 +12,9 @@ int Job::CalculateCombatPower(const Player& player){
 std::string Job::SolarEclipse(Player& player){
     if(player.getForce() > 0){
         player.setForce(player.getForce()-1);
+        return getSolarEclipseMessage(player, -1);
     }
-    return getSolarEclipseMessage(player, -1);
+    return getSolarEclipseMessage(player, 0);
 }
 
 Job::~Job() = default;

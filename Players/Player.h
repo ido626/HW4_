@@ -44,6 +44,11 @@ public:
     string getName() const;
 
     /**
+     * Sets the current level of the player
+    */
+    void setLevel(int newLevel);
+
+    /**
      * Gets the current level of the player
      *
      * @return - level of the player

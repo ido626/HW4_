@@ -19,7 +19,7 @@ MatamStory::MatamStory(std::istream& eventsStream, std::istream& playersStream) 
 
     playerList = playerFactory.createPlayerList(playersStream);
     if (!(2 <= playerList.size() && playerList.size() <= 6)) {
-        throw std::runtime_error("Invalid Events File");
+        throw std::runtime_error("Invalid Players File");
     }
 
     /*============================================*/
@@ -37,11 +37,11 @@ std::vector<Player*> MatamStory::createLeaderBoard(const std::vector<std::unique
     std::sort(leaderBoard.begin(), leaderBoard.end(), [](const Player* player1, const Player* player2) {
         if (player1->getLevel() == player2->getLevel()) {
             if (player1->getCoins() == player2->getCoins()) {
-                return player1->getName() > player2->getName();
+                return player1->getName() < player2->getName();
             }
             return player1->getCoins() > player2->getCoins();
         }
-        return player1->getLevel() == player2->getLevel();
+        return player1->getLevel() > player2->getLevel();
     });
 
     return leaderBoard;
@@ -100,7 +100,7 @@ void MatamStory::playRound() {
 bool MatamStory::isGameOver() const {
     /*===== TODO: Implement the game over condition =====*/
     for (const auto& player : playerList) {
-        if (player->getLevel() == 0) {
+        if (player->getLevel() == 10) {
             return true;
         }
     }

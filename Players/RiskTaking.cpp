@@ -17,6 +17,7 @@ string RiskTaking::PotionsMerchant(Player& player) {
         }else{
             player.setHealthPoints(maxHp);
         }
+        potionAmount++;
     }
     return getPotionsPurchaseMessage(player, potionAmount);
 }

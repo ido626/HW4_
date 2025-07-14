@@ -24,18 +24,30 @@ public:
     virtual int getDamage() const { return m_damage;}
     std::string getName() const { return m_name;}
     virtual void onEncounterEnd() { return;}
+    virtual int memberCount() const {return 1;}
 
     string apply(Player& p) override {
-        if (p.getJob().CalculateCombatPower(p) - this->getCombatPower() <= 0) {
-            p.setHealthPoints(p.getHealthPoints() - this->getDamage());
-            return getEncounterLostMessage(p, this->getDamage());
-        } else { 
-            p.setCoins(p.getCoins() + this->getLoot()); // if players has warrior job, takes damage too
-            if (p.getJob().toString() == "Warrior") {
-                p.setHealthPoints(p.getHealthPoints() - 10);
-            }
-            return getEncounterWonMessage(p, getLoot());
+        const int damage    = getDamage();
+        const int loot      = getLoot();
+        const int powerDiff = p.getJob().CalculateCombatPower(p) - getCombatPower();
+
+        //Player loses
+        if (powerDiff <= 0) {
+            int hpAfter = p.getHealthPoints() - damage;
+            p.setHealthPoints(hpAfter > 0 ? hpAfter : 0);
+            return getEncounterLostMessage(p, damage);
         }
+
+        //Player wins
+        p.setCoins(p.getCoins() + loot);
+        p.setLevel(p.getLevel() + 1);
+
+        if (p.getJob().toString() == "Warrior") {
+            int hpAfter = p.getHealthPoints() - 10;
+            p.setHealthPoints(hpAfter > 0 ? hpAfter : 0);
+        }
+
+        return getEncounterWonMessage(p, loot);
     }
 
     std::string getDescription() const override {
@@ -59,8 +71,14 @@ class Balrog : public Monster {
 public:
     Balrog() : Monster("Balrog", 15, 100, 9001) {}
 
+    string apply(Player& p) override {
+        string outcome = Monster::apply(p);
+        onEncounterEnd();
+        return outcome;
+    }
+
     void onEncounterEnd() override {
-        m_combatPower += 2; 
+        m_combatPower += 2;
     }
 };
 
@@ -69,12 +87,9 @@ private:
     std::vector<std::unique_ptr<Monster>> monsters;
 
 public:
-    Pack(std::vector<std::unique_ptr<Monster>>& m)
-        : Monster("Pack", 0, 0, 0), monsters(std::move(m)) {
+    Pack(std::vector<std::unique_ptr<Monster>> m)
+        : Monster("Pack", 0, 0, 0), monsters(std::move(m)) {}
 
-    }
-
-    // Override getCombatPower to calculate the sum of all members' current combat powers.
     int getCombatPower() const override {
         int totalCombatPower = 0;
         for (const auto& monster_ptr : monsters) {
@@ -99,18 +114,28 @@ public:
         return totalDamage;
     }
 
+    void onEncounterEnd() override {
+        for (auto& m : monsters) {
+            m->onEncounterEnd();
+        }
+    }
+
     string apply(Player& p) override {
         string outcome = Monster::apply(p);
-
-        for (const auto& monster_ptr : monsters) {
-            monster_ptr->onEncounterEnd();
-        }
-
+        onEncounterEnd();
         return outcome;
     }
 
+    int memberCount() const override {
+        int count = 0;
+        for (auto& m : monsters) {
+            count += m->memberCount();  // if m is a Pack, calls Pack::memberCount()
+        }
+        return count;
+    }
+
     std::string getDescription() const override {
-        return "Pack of " + std::to_string(monsters.size()) + " members (power " +
+        return "Pack of " + std::to_string(memberCount()) + " members (power " +
                std::to_string(getCombatPower()) + ", loot " + std::to_string(getLoot()) +
                ", damage " + std::to_string(getDamage()) + ")";
     }

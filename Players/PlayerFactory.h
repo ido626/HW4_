@@ -28,19 +28,19 @@ public:
       	}
 
          std::unique_ptr<Player> createPlayer(const std::string& name, const std::string& job, const std::string& character) const{
-            if (!(3 <= name.length() && name.length() >= 15)) {
-                throw std::runtime_error("Invalid Players File.");
+            if (!(3 <= name.length() && name.length() <= 15)) {
+                throw std::runtime_error("Invalid Players File");
             }
 
             auto jobIterator = jobFactoryMap.find(job);
             if (jobIterator == jobFactoryMap.end()) {
-                throw std::runtime_error("Invalid Players File.");
+                throw std::runtime_error("Invalid Players File");
             }
             auto newJob = jobIterator->second();
 
             auto characterIterator = characterFactoryMap.find(character);
             if (characterIterator == characterFactoryMap.end()) {
-                throw std::runtime_error("Invalid Players File.");
+                throw std::runtime_error("Invalid Players File");
             }
             auto newCharacter = characterIterator->second();
 
@@ -56,25 +56,26 @@ public:
             return newPlayer;
         }
 
-        std::vector<std::unique_ptr<Player>> createPlayerList(std::istream& playersStream) const {
-            std::string line;
+
+        std::vector<std::unique_ptr<Player>> createPlayerList(std::istream& in) const {
             std::vector<std::unique_ptr<Player>> list;
+            while (true) {
+                std::string name;
+                if (!(in >> name)) {
+                    break;
+                }
 
-            while (getline(playersStream, line)) {
-                std::istringstream iss(line);
-                string name, job, character;
+                if (!std::all_of(name.begin(), name.end(),[](unsigned char c){ return std::isalpha(c); })) {
+                    throw std::runtime_error("Invalid Players File");
+                    }
 
-                if (!(iss >> name >> job >> character)) {
+                std::string job, character;
+                if (!(in >> job >> character)) {
                     throw std::runtime_error("Invalid Players File");
                 }
 
-                auto player = createPlayer(name, job, character);
-                list.push_back(std::move(player));
-
+                list.push_back(createPlayer(name, job, character));
             }
             return list;
         }
-
 };
-
-

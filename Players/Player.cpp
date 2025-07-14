@@ -17,9 +17,15 @@ string Player::getName() const{
     return name;
 }
 
+void Player::setLevel(int newLevel) {
+    level = newLevel;
+}
+
+
 int Player::getLevel() const{
     return level;
 }
+
 
 int Player::getForce() const{
     return force;
