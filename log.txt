@@ -1,0 +1,222 @@
+* commit df767a2e4b50742a903149a71ee1d45b0128e312
+| Author: Ido <amit.ido@campus.technion.ac.il>
+| Date:   Mon Jul 14 16:43:54 2025 +0300
+| 
+|     everything works, passed all tests :)
+| 
+|  .gitmodules             |  6 ++++
+|  Events/EventFactory.h   | 91 ++++++++++++++++++++++++++++++++---------------
+|  Events/Monster.h        | 65 ++++++++++++++++++++++-----------
+|  MatamGenericTester      |  1 +
+|  MatamStory.cpp          |  8 ++---
+|  Players/Job.cpp         |  3 +-
+|  Players/Player.cpp      |  6 ++++
+|  Players/Player.h        |  5 +++
+|  Players/PlayerFactory.h | 33 ++++++++---------
+|  Players/RiskTaking.cpp  |  1 +
+|  TechnionMatam           |  1 +
+|  11 files changed, 150 insertions(+), 70 deletions(-)
+| 
+* commit 3a0d306ee040138fa78d10b0402d77b52be5cd4c
+| Author: Ido <amit.ido@campus.technion.ac.il>
+| Date:   Sun Jul 13 21:27:01 2025 +0300
+| 
+|     project compiles, before testing
+| 
+|  Events/Event.h             | 27 +++++---------
+|  Events/EventFactory.h      | 67 ++++++++++++++++++++++++++++++++++
+|  Events/Monster.h           | 50 +++++++++++++------------
+|  Events/PotionsMerchant.cpp | 14 +++++++
+|  Events/SolarEclipse.cpp    | 13 +++++++
+|  MatamStory.cpp             | 87 +++++++++++++++++++++++++++++++++++++++-----
+|  MatamStory.h               | 13 +++++--
+|  Players/Archer.h           |  9 -----
+|  Players/Character.h        | 18 ++++++++-
+|  Players/Job.cpp            | 19 ++++++++++
+|  Players/Job.h              | 37 +++++++++++++------
+|  Players/Magician.cpp       | 15 ++++++++
+|  Players/Magician.h         | 13 -------
+|  Players/Player.cpp         |  9 ++++-
+|  Players/Player.h           | 15 ++++++--
+|  Players/PlayerFactory.h    | 80 ++++++++++++++++++++++++++++++++++++++++
+|  Players/Responsible.cpp    | 26 +++++++++++++
+|  Players/Responsible.h      | 23 ------------
+|  Players/RiskTaking.cpp     | 26 +++++++++++++
+|  Players/RiskTaking.h       | 23 ------------
+|  Players/Warrior.cpp        | 17 +++++++++
+|  Players/Warrior.h          | 14 -------
+|  22 files changed, 461 insertions(+), 154 deletions(-)
+| 
+* commit f510dd3015419e4a9ff21a3233b31f2b758d2271
+| Author: Itamar <itamarbrtt@gmail.com>
+| Date:   Fri Jul 11 16:02:42 2025 +0300
+| 
+|     fix Monster
+| 
+|  Events/Monster.h | 13 ++++---------
+|  1 file changed, 4 insertions(+), 9 deletions(-)
+|   
+*   commit 34948036661d2ae187b4fa3e455ce82e28b67d2c
+|\  Merge: 055b20d 56ac59d
+| | Author: Itamar <itamarbrtt@gmail.com>
+| | Date:   Fri Jul 11 15:55:46 2025 +0300
+| | 
+| |     Merge branch 'master' of https://github.com/ido626/HW4_
+| | 
+| * commit 56ac59d8e9e894240fc11d9688e7bc9c38d5b5a6
+| | Author: Ido <amit.ido@campus.technion.ac.il>
+| | Date:   Fri Jul 11 15:08:14 2025 +0300
+| | 
+| |     Fix syntax errors
+| | 
+| |  Players/Archer.h      | 10 +++++++---
+| |  Players/Character.h   | 13 ++++++++++---
+| |  Players/Job.h         | 17 ++++++++++++-----
+| |  Players/Magician.h    | 13 +++++++++----
+| |  Players/Player.cpp    | 11 ++++++++++-
+| |  Players/Player.h      | 12 ++++++++++++
+| |  Players/Responsible.h | 36 +++++++++++++++++++-----------------
+| |  Players/RiskTaking.h  | 35 +++++++++++++++++++----------------
+| |  Players/Warrior.h     | 16 +++++++++++-----
+| |  9 files changed, 109 insertions(+), 54 deletions(-)
+| |   
+| *   commit d8c23fe6f662dd76e12769283e100ea5eae7a182
+| |\  Merge: 5ddfec0 7cdd682
+| | | Author: Ido <amit.ido@campus.technion.ac.il>
+| | | Date:   Fri Jul 11 14:06:48 2025 +0300
+| | | 
+| | |     Merge branch 'master' of https://github.com/ido626/HW4_
+| | |     # Please enter a commit message to explain why this merge is necessary,
+| | |     # especially if it merges an updated upstream into a topic branch.
+| | |     #
+| | |     # Lines starting with '#' will be ignored, and an empty message aborts
+| | |     # the commit.
+| | | 
+| * | commit 5ddfec04bd207958767cd813b7f244991bdfa19d
+| | | Author: Ido <amit.ido@campus.technion.ac.il>
+| | | Date:   Fri Jul 11 13:59:42 2025 +0300
+| | | 
+| | |     initial version of Event.h
+| | | 
+| | |  Events/Event.h | 26 +++++++++++++++++++++++++-
+| | |  1 file changed, 25 insertions(+), 1 deletion(-)
+| | | 
+* | | commit 055b20d55d146bbaf01c45f1cbad83feaae20639
+| |/  Author: Itamar <itamarbrtt@gmail.com>
+|/|   Date:   Fri Jul 11 15:55:35 2025 +0300
+| |   
+| |       add Monster and it's children
+| |   
+| |    Events/Monster.h | 120 +++++++++++++++++++++++++++++++++++++++++++++++++
+| |    1 file changed, 120 insertions(+)
+| | 
+* | commit 7cdd682e777073aa6b302c6357cfdcd4c1c92272
+|/  Author: Itamar <itamarbrtt@gmail.com>
+|   Date:   Mon Jul 7 18:44:59 2025 +0300
+|   
+|       recommit last
+|   
+|    Players/Archer.h     |  5 +++++
+|    Players/Character.h  |  4 ++++
+|    Players/Job.h        |  7 +++++++
+|    Players/Magician.h   |  3 +++
+|    Players/RiskTaking.h | 20 ++++++++++++++++++++
+|    5 files changed, 39 insertions(+)
+| 
+* commit 9e77f0f92a626932df6b60566a2e2ff726b9b149
+| Author: Itamar <itamarbrtt@gmail.com>
+| Date:   Mon Jul 7 18:43:18 2025 +0300
+| 
+|     add Archer Magician, toStrings
+| 
+|  Players/Archer.h      |  0
+|  Players/Magician.h    |  5 +++++
+|  Players/Responsible.h | 21 +++++++++++++++++++++
+|  Players/Warrior.h     |  7 +++++++
+|  4 files changed, 33 insertions(+)
+| 
+* commit 906605ba5b093f19c561a0832f43b9ed8f5abb4c
+| Author: Ido <amit.ido@campus.technion.ac.il>
+| Date:   Mon Jul 7 18:31:14 2025 +0300
+| 
+|     move files to the correct dir
+| 
+|  Character.h => Players/Character.h     | 0
+|  Job.h => Players/Job.h                 | 0
+|  Responsible.h => Players/Responsible.h | 0
+|  RiskTaking.h => Players/RiskTaking.h   | 0
+|  Warrior.h => Players/Warrior.h         | 0
+|  5 files changed, 0 insertions(+), 0 deletions(-)
+|   
+*   commit 639a8c36d89da4ab2a2d63cadd5c394dd59ee1c1
+|\  Merge: 59c8885 c30df5a
+| | Author: Itamar <itamarbrtt@gmail.com>
+| | Date:   Mon Jul 7 18:26:32 2025 +0300
+| | 
+| |     Merge branch 'master' of https://github.com/ido626/HW4_
+| | 
+| * commit c30df5ad38f89a740c78c3d0952872b2ffef1eb2
+| | Author: Ido <amit.ido@campus.technion.ac.il>
+| | Date:   Mon Jul 7 18:24:59 2025 +0300
+| | 
+| |     initial commit for player class
+| | 
+| |  Players/Player.cpp | 48 ++++++++++++++++++++++++++++++++++++++++++++++++
+| |  Players/Player.h   | 46 ++++++++++++++++++++++++++++++++++++++++++++++
+| |  2 files changed, 94 insertions(+)
+| | 
+* | commit 59c88854459cd0f434fc42b4864d90f633318a73
+|/  Author: Itamar <itamarbrtt@gmail.com>
+|   Date:   Mon Jul 7 18:26:14 2025 +0300
+|   
+|       add Job->Responsible,RiskTaking, Character->Warrior
+|   
+|    Character.h   | 0
+|    Job.h         | 5 +++++
+|    Responsible.h | 0
+|    RiskTaking.h  | 0
+|    Warrior.h     | 0
+|    5 files changed, 5 insertions(+)
+| 
+* commit 51796562dfb799a0ac456f5d2f922b9571403bd9
+| Author: Yinon Goldshtein <yinongold@gmail.com>
+| Date:   Tue Jun 24 09:06:41 2025 +0300
+| 
+|     updated course number in README
+| 
+|  README.md | 2 +-
+|  1 file changed, 1 insertion(+), 1 deletion(-)
+| 
+* commit 11db499619ae45b95224312022c5e0459653edcd
+| Author: Egbaria Mohammad-Baraa <102754795+EgbariaMohammad@users.noreply.github.com>
+| Date:   Wed Jan 8 19:48:30 2025 +0200
+| 
+|     Update README.md
+| 
+|  README.md | 4 ++--
+|  1 file changed, 2 insertions(+), 2 deletions(-)
+| 
+* commit 89b5f6299cabd5cfeb30a0873786055da6280436
+  Author: Yinon Goldshtein <yinongold@gmail.com>
+  Date:   Tue Jan 7 01:02:53 2025 +0200
+  
+      initial commit
+  
+   Events/Event.h       |  14 +++++
+   MatamStory.cpp       |  74 +++++++++++++++++++++++++
+   MatamStory.h         |  55 +++++++++++++++++++
+   Players/Player.h     |  51 +++++++++++++++++
+   README.md            |   7 +++
+   Utilities.cpp        | 117 +++++++++++++++++++++++++++++++++++++++
+   Utilities.h          | 146 +++++++++++++++++++++++++++++++++++++++++++++++++
+   main.cpp             |  40 ++++++++++++++
+   tests/test1.events   |   5 ++
+   tests/test1.expected |  96 ++++++++++++++++++++++++++++++++
+   tests/test1.players  |   3 +
+   tests/test2.events   |   4 ++
+   tests/test2.expected |   1 +
+   tests/test2.players  |   3 +
+   tests/test3.events   |   5 ++
+   tests/test3.expected |   1 +
+   tests/test3.players  |   2 +
+   17 files changed, 624 insertions(+)
