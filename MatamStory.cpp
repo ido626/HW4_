@@ -118,7 +118,7 @@ void MatamStory::play() {
     printStartMessage();
     /*===== TODO: Print start message entry for each player using "printStartPlayerEntry" =====*/
 
-    for (int i = 0; i < playerList.size(); i++) {
+    for (long unsigned int i = 0; i < playerList.size(); i++) {
         printStartPlayerEntry(i + 1, *playerList[i]);
     }
 
